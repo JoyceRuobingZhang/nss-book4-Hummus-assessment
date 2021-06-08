@@ -32,7 +32,9 @@ const database = {
         { id: 6, title: "Mini Souvlaki", price: 5.20 }
     ],
     purchases: [],
-    comboChoices: {},
+    comboChoices: {
+        selectedVeggies: []
+    },
 }
 
 //get all database arrays
@@ -58,7 +60,7 @@ export const setEntree = (id) => {
 }
 
 export const setVeggie = (id) => {
-    database.comboChoices.veggieId = id
+    database.comboChoices.selectedVeggies.push(id)
 }
 
 export const setSide = (id) => {
@@ -67,11 +69,11 @@ export const setSide = (id) => {
 
 // set state array
 export const addPurchase = () => {
-    if (database.comboChoices.entreeId && database.comboChoices.veggieId && database.comboChoices.sideId) {
+    if (database.comboChoices.entreeId && database.comboChoices.sideId) {
         database.comboChoices.id = database.purchases.length + 1
         database.comboChoices.timeStamp = Date.now()
         database.purchases.push(database.comboChoices)
-        database.comboChoices = {}
+        database.comboChoices = { selectedVeggies: [] }
         document.dispatchEvent(new CustomEvent("stateChanged"))
     }
 }

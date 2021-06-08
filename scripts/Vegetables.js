@@ -14,7 +14,7 @@ export const Veggies = () => {
         ${
             veggies.map(vegetable => {
                 return `<li>
-                            <input type="radio" name="vegetable" value="${vegetable.id}" /> ${vegetable.type}
+                            <input type="checkbox" name="vegetable" value="${vegetable.id}" /> ${vegetable.type}
                         </li>`
             }).join("")
         }
